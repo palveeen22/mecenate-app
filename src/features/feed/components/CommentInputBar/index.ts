@@ -1,0 +1,1 @@
+export { CommentInputBar } from './CommentInputBar';
