@@ -65,4 +65,3 @@ src/
   shared/            # Shared utilities (api client, design tokens, providers)
 app/                 # Expo Router file-based routes
 ```
-# mecenate-app
