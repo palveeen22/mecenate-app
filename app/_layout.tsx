@@ -19,7 +19,7 @@ export default function RootLayout() {
             <Stack.Screen name="post/[id]" options={{ headerShown: false }} />
             <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
           </Stack>
-          <StatusBar style="light" />
+          <StatusBar style="dark" />
         </QueryProvider>
       </PortalProvider>
     </GestureHandlerRootView>
