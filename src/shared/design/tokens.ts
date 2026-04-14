@@ -6,12 +6,13 @@ export const Colors = {
   surfaceSubtle: '#F5F8FD',
   border: '#E8ECEF',
 
-  primary: '#6115CD',
-  primaryDark: '#4E11A4',
-  primaryLight: '#9061F9',
-  primaryDim: '#D5C9FF',
+  primary: '#6115CD', //deafult
+  primaryElevated: '#4E11A4', //hover
+  primaryDark: '#3A0D7B', // pressed
+  primaryDim: '#D5C9FF', // disable 
 
   icon: '#57626F',
+  iconLight: '#A4AAB0',
 
 
   text: '#111416',
@@ -23,18 +24,24 @@ export const Colors = {
   likeDark: '#DE2465',
   likeLight: '#FFBAD2',
 
-  actionDefault: '#EFF2F7',
-  actionHover: '#DDDDDD',
-  actionPressed: '#D4D4D4',
-  actionDisabled: '#FFFFFF',
+  actionDefault: '#EFF2F7', //deafult
+  actionHover: '#DDDDDD', // hover
+  actionPressed: '#D4D4D4', //pressed
+  actionDisabled: '#FFFFFF', //disable
 
 
   error: '#EF4444',
   errorDim: 'rgba(239, 68, 68, 0.12)',
 
+  inputHover: '#E6E9EF',
+
+
   white: '#FFFFFF',
   black: '#000000',
+  grey: '#F3F3F3',
   transparent: 'transparent',
+
+  skeleton: 'rgba(238, 239, 241, 0.8)'
 } as const;
 
 export const Spacing = {
