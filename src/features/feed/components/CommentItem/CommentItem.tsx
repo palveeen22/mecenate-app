@@ -23,16 +23,8 @@ export const CommentItem = React.memo(function CommentItem({ comment }: Props) {
         </View>
       )}
       <View style={styles.content}>
-        <View style={styles.bubble}>
-          <Text style={styles.author}>{comment.author.displayName}</Text>
-          <Text style={styles.text}>{comment.text}</Text>
-        </View>
-        <Text style={styles.time}>
-          {new Date(comment.createdAt).toLocaleDateString('ru-RU', {
-            day: 'numeric',
-            month: 'short',
-          })}
-        </Text>
+        <Text style={styles.author}>{comment.author.displayName}</Text>
+        <Text style={styles.text}>{comment.text}</Text>
       </View>
     </View>
   );
@@ -61,15 +53,8 @@ const styles = StyleSheet.create({
     color: Colors.white,
   },
   content: { flex: 1, gap: 4 },
-  bubble: {
-    backgroundColor: Colors.surfaceElevated,
-    borderRadius: Radius.md,
-    paddingHorizontal: Spacing.sm + 2,
-    paddingVertical: Spacing.xs + 2,
-    gap: 2,
-  },
   author: {
-    fontSize: Typography.size.sm,
+    fontSize: Typography.size.sm + 1,
     fontWeight: Typography.weight.semibold,
     color: Colors.text,
   },
@@ -77,10 +62,5 @@ const styles = StyleSheet.create({
     fontSize: Typography.size.sm,
     color: Colors.text,
     lineHeight: Typography.size.sm * 1.5,
-  },
-  time: {
-    fontSize: Typography.size.xs,
-    color: Colors.textMuted,
-    paddingLeft: 2,
   },
 });

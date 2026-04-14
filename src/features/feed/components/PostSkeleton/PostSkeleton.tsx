@@ -2,8 +2,6 @@ import { Colors, Radius, Spacing } from '@/src/shared/design';
 import React, { useEffect, useRef } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
 
-const SKELETON_COLOR = 'rgba(238, 239, 241, 0.8)';
-
 function SkeletonBox({ style }: { style?: object }) {
   const opacity = useRef(new Animated.Value(0.5)).current;
 
@@ -103,6 +101,6 @@ const styles = StyleSheet.create({
     borderRadius: Radius.full,
   },
   skeleton: {
-    backgroundColor: SKELETON_COLOR,
+    backgroundColor: Colors.skeleton,
   },
 });

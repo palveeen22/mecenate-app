@@ -1,10 +1,13 @@
 import { Colors, Radius, Spacing, Typography } from '@/src/shared/design';
+import { InputBar } from '@/src/shared/ui/InputBar';
 import { Ionicons } from '@expo/vector-icons';
 import BottomSheet, {
   BottomSheetBackdrop,
+  BottomSheetBackdropProps,
   BottomSheetFlatList,
   BottomSheetFooter,
-  BottomSheetTextInput
+  BottomSheetFooterProps,
+  BottomSheetTextInput,
 } from '@gorhom/bottom-sheet';
 import { Portal } from '@gorhom/portal';
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
@@ -13,8 +16,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAddComment } from '../../hooks/useAddComment';
 import { useComments } from '../../hooks/useComments';
 import { Comment } from '../../types';
-import { CommentInputBar } from '../CommentInputBar';
 import { CommentItem } from '../CommentItem';
+import { CommentSkeleton } from '../CommentSkeleton';
 
 type Props = {
   postId: string;
@@ -32,7 +35,17 @@ export function CommentsDrawer({ postId, commentsCount, visible, onClose }: Prop
 
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } = useComments(postId);
   const { mutate: addComment, isPending } = useAddComment(postId);
-  const comments = data?.pages.flatMap((p) => p.comments) ?? [];
+
+  const comments = useMemo(() => {
+    const seen = new Set<string>();
+    return (data?.pages ?? [])
+      .flatMap((p) => p.comments)
+      .filter((c) => {
+        if (seen.has(c.id)) return false;
+        seen.add(c.id);
+        return true;
+      });
+  }, [data?.pages]);
 
   useEffect(() => {
     if (visible) {
@@ -48,7 +61,7 @@ export function CommentsDrawer({ postId, commentsCount, visible, onClose }: Prop
   );
 
   const renderBackdrop = useCallback(
-    (props: any) => (
+    (props: BottomSheetBackdropProps) => (
       <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} opacity={0.5} />
     ),
     [],
@@ -62,17 +75,18 @@ export function CommentsDrawer({ postId, commentsCount, visible, onClose }: Prop
   );
 
   const renderFooter = useCallback(
-    (props: any) => (
+    (props: BottomSheetFooterProps) => (
       <BottomSheetFooter {...props}>
         <View style={[
           styles.inputBar,
           { paddingBottom: insets.bottom > 0 ? insets.bottom : Spacing.sm }
         ]}>
           <View style={styles.separator} />
-          <CommentInputBar
+          <InputBar
             onSend={handleSend}
             isPending={isPending}
-            TextInputComponent={BottomSheetTextInput as any}
+            placeholder="Добавьте комментарий..."
+            TextInputComponent={BottomSheetTextInput}
           />
         </View>
       </BottomSheetFooter>
@@ -91,6 +105,7 @@ export function CommentsDrawer({ postId, commentsCount, visible, onClose }: Prop
         onChange={handleSheetChanges}
         onClose={onClose}
         enablePanDownToClose
+        topInset={insets.top}
         backdropComponent={renderBackdrop}
         footerComponent={renderFooter}
         handleIndicatorStyle={styles.handle}
@@ -105,9 +120,7 @@ export function CommentsDrawer({ postId, commentsCount, visible, onClose }: Prop
         </View>
 
         {isLoading ? (
-          <View style={styles.centered}>
-            <ActivityIndicator color={Colors.primary} />
-          </View>
+          <CommentSkeleton />
         ) : comments.length === 0 ? (
           <View style={styles.centered}>
             <Ionicons name="chatbubble-outline" size={40} color={Colors.textMuted} />

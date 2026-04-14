@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   },
   cover: {
     width: '100%',
-    height: 260,
+    height: 393,
     backgroundColor: Colors.surfaceElevated,
   },
   body: {

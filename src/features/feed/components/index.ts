@@ -7,3 +7,7 @@ export { CommentItem } from './CommentItem';
 export { CommentInputBar } from './CommentInputBar';
 export { PostAuthorRow } from './PostAuthorRow';
 export { PostActions } from './PostActions';
+export { PostDetailHeader } from './PostDetailHeader';
+export { FeedListHeader } from './FeedListHeader';
+export { FeedFooterLoader } from './FeedFooterLoader';
+export { CommentSkeleton } from './CommentSkeleton';

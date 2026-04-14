@@ -7,11 +7,8 @@ import { Author } from '../../types';
 
 type Props = {
   author: Author;
-  /** Avatar diameter. Default 40. */
   avatarSize?: number;
-  /** Show verified badge. Default false. */
   showVerified?: boolean;
-  /** Second line under display name. */
   subtitle?: string;
 };
 

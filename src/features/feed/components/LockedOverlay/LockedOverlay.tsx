@@ -23,11 +23,16 @@ export function LockedOverlay({ blurImageUrl, onDonate }: Props) {
         />
       )}
 
-      <BlurView intensity={60} tint="dark" style={StyleSheet.absoluteFill} />
+      <BlurView
+        intensity={60}
+        tint="dark"
+        experimentalBlurMethod="dimezisBlurView"
+        style={StyleSheet.absoluteFill}
+      />
 
       <View style={styles.content}>
         <View style={styles.iconCircle}>
-          <PaidIcon size={20} color={Colors.white} />
+          <PaidIcon size={30} color={Colors.white} />
         </View>
 
         <Text style={styles.title}>
@@ -39,6 +44,7 @@ export function LockedOverlay({ blurImageUrl, onDonate }: Props) {
           onPress={onDonate}
           size="md"
           style={styles.donateBtn}
+          radius={Radius.lg - 2}
         />
       </View>
     </View>
@@ -64,21 +70,21 @@ const styles = StyleSheet.create({
     width: 42,
     height: 42,
     borderRadius: Radius.sm + 2,
-    backgroundColor: Colors.primaryDark,
+    backgroundColor: Colors.primary,
     alignItems: "center",
     justifyContent: "center",
     marginBottom: Spacing.xs,
   },
   title: {
     fontSize: Typography.size.md,
-    fontWeight: Typography.weight.medium,
+    fontWeight: Typography.weight.semibold,
     color: Colors.white,
     textAlign: "center",
     lineHeight: Typography.size.md * Typography.lineHeight.normal,
   },
   donateBtn: {
     marginTop: Spacing.sm,
-    width: "80%",
+    width: 239,
     alignSelf: "center",
   },
 });

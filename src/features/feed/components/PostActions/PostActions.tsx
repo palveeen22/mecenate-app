@@ -3,7 +3,7 @@ import { Colors, Radius, Spacing, Typography } from '@/src/shared/design';
 import { formatCount } from '@/src/shared/lib/format';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   cancelAnimation,
@@ -52,10 +52,16 @@ export const PostActions = observer(function PostActions({ post, onCommentPress 
         </Animated.View>
       </GestureDetector>
 
-      <TouchableOpacity style={styles.btn} activeOpacity={0.8} onPress={onCommentPress}>
+      <Pressable
+        style={({ pressed }: { pressed: boolean }) => [
+          styles.btn,
+          pressed && styles.btnPressed,
+        ]}
+        onPress={onCommentPress}
+      >
         <CommentIcon size={15} color={Colors.icon} />
         <Text style={styles.count}>{formatCount(post.commentsCount)}</Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 });
@@ -79,6 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.actionDefault,
   },
   btnLiked: { backgroundColor: Colors.like },
+  btnPressed: { backgroundColor: Colors.actionPressed },
   count: {
     fontSize: Typography.size.sm,
     fontWeight: Typography.weight.medium,
