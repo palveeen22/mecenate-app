@@ -18,16 +18,16 @@ Feed screen for the Mecenate platform — a creator support service (Patreon/Boo
 
 ## Tech Stack
 
-| Layer | Library |
-|---|---|
-| Framework | React Native + Expo SDK 54 |
-| Navigation | Expo Router (file-based) |
-| Server state | `@tanstack/react-query` v5 |
-| Client state | MobX + `mobx-react-lite` |
-| Styling | Design tokens (`src/shared/design/tokens.ts`) |
-| Bottom sheet | `@gorhom/bottom-sheet` |
-| Blur | `expo-blur` (`dimezisBlurView` on Android) |
-| Language | TypeScript (strict) |
+| Layer        | Library                                       |
+| ------------ | --------------------------------------------- |
+| Framework    | React Native + Expo SDK 54                    |
+| Navigation   | Expo Router (file-based)                      |
+| Server state | `@tanstack/react-query` v5                    |
+| Client state | MobX + `mobx-react-lite`                      |
+| Styling      | Design tokens (`src/shared/design/tokens.ts`) |
+| Bottom sheet | `@gorhom/bottom-sheet`                        |
+| Blur         | `expo-blur` (`dimezisBlurView` on Android)    |
+| Language     | TypeScript (strict)                           |
 
 ## Getting Started
 
@@ -49,6 +49,7 @@ npx expo start
 ```
 
 Press:
+
 - `i` — iOS Simulator
 - `a` — Android Emulator
 - Scan QR code with Expo Go (note: Android blur requires dev build)
@@ -63,9 +64,9 @@ npx expo run:android
 
 No `.env` file required. API config is pre-set in `src/shared/api/client.ts`:
 
-| Key | Value |
-|---|---|
-| Base URL | `https://k8s.mectest.ru/test-app` |
+| Key        | Value                                  |
+| ---------- | -------------------------------------- |
+| Base URL   | `https://k8s.mectest.ru/test-app`      |
 | Auth token | `550e8400-e29b-41d4-a716-446655440000` |
 
 ## Project Structure
@@ -79,3 +80,17 @@ assets/icons/             # Custom SVG icon components
 ```
 
 See [ARCHITECTURE.md](./ARCHITECTURE.md) for full structure, data flow, and conventions.
+
+## Demo Preview
+
+<p align="center">
+  <img src="./assets/images/simulator.gif" width="300" alt="iOS Demo">
+</p>
+
+### Android Screenshots
+
+<p align="center">
+  <img src="./assets/images/andro1.png" width="300" alt="Android Screen 1">
+  &nbsp;&nbsp;
+  <img src="./assets/images/andro2.png" width="300" alt="Android Screen 2">
+</p>
