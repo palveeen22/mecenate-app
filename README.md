@@ -5,27 +5,36 @@ Feed screen for the Mecenate platform — a creator support service (Patreon/Boo
 ## Features
 
 - Paginated post feed with cursor-based infinite scroll
+- Filter tabs (All / Free / Paid) — no loading flicker on switch (`keepPreviousData`)
 - Pull-to-refresh
 - Optimistic like toggling with MobX
-- Locked content overlay for paid posts
+- Post detail screen with inline comment thread
+- Comments bottom drawer with real-time optimistic prepend
+- Locked content overlay with native blur (`expo-blur` + dimezis on Android)
 - Skeleton loading states
 - Error state with retry
+- Fixed-height comment input bar (consistent across all states)
+- Design token system — colors, spacing, typography, radius
 
 ## Tech Stack
 
-- **React Native + Expo** (SDK 54)
-- **TypeScript**
-- **Expo Router** (file-based routing)
-- **React Query** (`@tanstack/react-query`) — server state, pagination, caching
-- **MobX** + `mobx-react-lite` — client state (optimistic like updates)
-- **Design tokens** — centralized color, spacing, typography system
+| Layer | Library |
+|---|---|
+| Framework | React Native + Expo SDK 54 |
+| Navigation | Expo Router (file-based) |
+| Server state | `@tanstack/react-query` v5 |
+| Client state | MobX + `mobx-react-lite` |
+| Styling | Design tokens (`src/shared/design/tokens.ts`) |
+| Bottom sheet | `@gorhom/bottom-sheet` |
+| Blur | `expo-blur` (`dimezisBlurView` on Android) |
+| Language | TypeScript (strict) |
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js 18+
-- Expo Go app on your device or iOS Simulator / Android Emulator
+- iOS Simulator / Android Emulator or physical device
 
 ### Install
 
@@ -39,29 +48,34 @@ npm install
 npx expo start
 ```
 
-Then press:
+Press:
 - `i` — iOS Simulator
 - `a` — Android Emulator
-- Scan QR code with Expo Go
+- Scan QR code with Expo Go (note: Android blur requires dev build)
 
-## Environment Variables
+### Android Dev Build (for native blur)
 
-No environment variables required. The API base URL and demo auth token are pre-configured in `src/shared/api/client.ts`:
+```bash
+npx expo run:android
+```
 
-| Variable | Value |
+## Environment
+
+No `.env` file required. API config is pre-set in `src/shared/api/client.ts`:
+
+| Key | Value |
 |---|---|
-| `BASE_URL` | `https://k8s.mectest.ru/test-app` |
-| `AUTH_TOKEN` | `550e8400-e29b-41d4-a716-446655440000` |
-
-To override for production, extract these into an `.env` file using `expo-constants` or `react-native-dotenv`.
+| Base URL | `https://k8s.mectest.ru/test-app` |
+| Auth token | `550e8400-e29b-41d4-a716-446655440000` |
 
 ## Project Structure
 
-See [ARCHITECTURE.md](./ARCHITECTURE.md) for full architecture description.
-
 ```
 src/
-  features/feed/     # Feed feature (screens, components, hooks, store, api)
-  shared/            # Shared utilities (api client, design tokens, providers)
-app/                 # Expo Router file-based routes
+  features/feed/          # Feed feature (api, components, hooks, screens, store)
+  shared/                 # Design tokens, UI primitives, API client, providers
+app/                      # Expo Router routes
+assets/icons/             # Custom SVG icon components
 ```
+
+See [ARCHITECTURE.md](./ARCHITECTURE.md) for full structure, data flow, and conventions.
