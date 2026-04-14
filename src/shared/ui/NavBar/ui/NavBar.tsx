@@ -1,7 +1,7 @@
+import { Colors, Spacing } from "@/src/shared/design";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { Colors, Spacing } from "../../design";
 
 export function NavBar() {
   return (
