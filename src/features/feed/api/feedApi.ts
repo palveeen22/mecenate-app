@@ -1,6 +1,6 @@
 import { apiClient } from '@/src/shared/api';
 import { ApiResponse } from '@/src/shared/types';
-import { CommentsPage, Post, PostsPage } from '../types';
+import { Comment, CommentsPage, Post, PostsPage } from '../types';
 
 type GetPostsParams = {
   limit?: number;
