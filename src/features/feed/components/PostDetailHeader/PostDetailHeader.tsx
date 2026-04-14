@@ -2,8 +2,10 @@ import { Colors, Radius, Spacing, Typography } from '@/shared/design';
 import { formatDate } from '@/shared/lib/format';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { feedStore } from '../../store';
 import { Post } from '../../types';
 import { CommentSkeleton } from '../CommentSkeleton';
 import { PostActions } from '../PostActions';
@@ -16,12 +18,13 @@ type Props = {
   onCommentPress: () => void;
 };
 
-export const PostDetailHeader = React.memo(function PostDetailHeader({
+export const PostDetailHeader = observer(function PostDetailHeader({
   post,
   commentsLoading,
   commentsEmpty,
   onCommentPress,
 }: Props) {
+  const commentsCount = feedStore.getCommentsCount(post.id, post.commentsCount);
   return (
     <View>
       <PostAuthorRow
@@ -56,7 +59,7 @@ export const PostDetailHeader = React.memo(function PostDetailHeader({
 
       <View style={styles.commentsHeader}>
         <Text style={styles.commentsTitle}>Комментарии</Text>
-        <Text style={styles.commentsCount}>{post.commentsCount}</Text>
+        <Text style={styles.commentsCount}>{commentsCount}</Text>
       </View>
 
       {commentsLoading && <CommentSkeleton />}

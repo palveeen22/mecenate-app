@@ -19,6 +19,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { CommentItem } from '../components/CommentItem';
 import { PostDetailHeader } from '../components/PostDetailHeader';
 import { useAddComment, useComments, usePost } from '../hooks';
+import { feedStore } from '../store';
 import { Comment } from '../types';
 
 type Props = { postId: string };
@@ -48,19 +49,25 @@ export const PostDetailScreen = observer(function PostDetailScreen({ postId }: P
       });
   }, [commentsData?.pages]);
 
-  const handleSend = useCallback((text: string) => addComment(text), [addComment]);
+  const handleSend = useCallback(
+    (text: string) =>
+      addComment({ text, currentCommentsCount: feedStore.getCommentsCount(postId, post?.commentsCount ?? 0) }),
+    [addComment, postId, post?.commentsCount],
+  );
   const handleCommentPress = useCallback(() => inputRef.current?.focus(), []);
+
+  const commentsEmpty = !commentsLoading && comments.length === 0;
 
   const renderHeader = useCallback(
     () => (
       <PostDetailHeader
         post={post!}
         commentsLoading={commentsLoading}
-        commentsEmpty={!commentsLoading && comments.length === 0}
+        commentsEmpty={commentsEmpty}
         onCommentPress={handleCommentPress}
       />
     ),
-    [post, commentsLoading, comments.length, handleCommentPress],
+    [post, commentsLoading, commentsEmpty, handleCommentPress],
   );
 
   const renderComment: ListRenderItem<Comment> = useCallback(

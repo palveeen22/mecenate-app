@@ -1,12 +1,16 @@
 import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
 import { feedApi } from '../api/feedApi';
+import { feedStore } from '../store';
 import { CommentsPage } from '../types';
+
+type AddCommentVars = { text: string; currentCommentsCount: number };
 
 export function useAddComment(postId: string) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (text: string) => feedApi.addComment(postId, text),
-    onSuccess: (newComment) => {
+    mutationFn: ({ text }: AddCommentVars) => feedApi.addComment(postId, text),
+    onSuccess: (newComment, { currentCommentsCount }) => {
+      feedStore.incrementCommentsCount(postId, currentCommentsCount);
       queryClient.setQueryData<InfiniteData<CommentsPage>>(
         ['comments', postId],
         (old) => {

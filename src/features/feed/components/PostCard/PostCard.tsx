@@ -5,6 +5,7 @@ import { router } from 'expo-router';
 import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { feedStore } from '../../store';
 import { Post } from '../../types';
 import { LockedOverlay } from '../LockedOverlay';
 import { PostActions } from '../PostActions';
@@ -79,7 +80,7 @@ export const PostCard = observer(function PostCard({ post, onCommentPress }: Pro
             <View style={styles.footer}>
               <PostActions
                 post={post}
-                onCommentPress={() => onCommentPress(post.id, post.commentsCount)}
+                onCommentPress={() => onCommentPress(post.id, feedStore.getCommentsCount(post.id, post.commentsCount))}
               />
             </View>
           </View>

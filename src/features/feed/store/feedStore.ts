@@ -3,6 +3,7 @@ import { makeAutoObservable } from 'mobx';
 class FeedStore {
   likedPosts: Map<string, boolean> = new Map();
   likeCounts: Map<string, number> = new Map();
+  commentCounts: Map<string, number> = new Map();
 
   constructor() {
     makeAutoObservable(this);
@@ -26,6 +27,17 @@ class FeedStore {
 
   getLikesCount(postId: string, fallback: number): number {
     return this.likeCounts.has(postId) ? (this.likeCounts.get(postId) as number) : fallback;
+  }
+
+  getCommentsCount(postId: string, fallback: number): number {
+    return this.commentCounts.has(postId) ? (this.commentCounts.get(postId) as number) : fallback;
+  }
+
+  incrementCommentsCount(postId: string, currentCount: number) {
+    const current = this.commentCounts.has(postId)
+      ? (this.commentCounts.get(postId) as number)
+      : currentCount;
+    this.commentCounts.set(postId, current + 1);
   }
 }
 

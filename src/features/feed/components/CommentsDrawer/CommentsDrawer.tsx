@@ -10,11 +10,13 @@ import BottomSheet, {
   BottomSheetTextInput,
 } from '@gorhom/bottom-sheet';
 import { Portal } from '@gorhom/portal';
+import { observer } from 'mobx-react-lite';
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAddComment } from '../../hooks/useAddComment';
 import { useComments } from '../../hooks/useComments';
+import { feedStore } from '../../store';
 import { Comment } from '../../types';
 import { CommentItem } from '../CommentItem';
 import { CommentSkeleton } from '../CommentSkeleton';
@@ -26,7 +28,8 @@ type Props = {
   onClose: () => void;
 };
 
-export function CommentsDrawer({ postId, commentsCount, visible, onClose }: Props) {
+export const CommentsDrawer = observer(function CommentsDrawer({ postId, commentsCount, visible, onClose }: Props) {
+  const count = feedStore.getCommentsCount(postId, commentsCount);
   const bottomSheetRef = useRef<BottomSheet>(null);
   const insets = useSafeAreaInsets();
   const footerHeight = 56 + (insets.bottom > 0 ? insets.bottom : Spacing.sm) + 1;
@@ -67,7 +70,10 @@ export function CommentsDrawer({ postId, commentsCount, visible, onClose }: Prop
     [],
   );
 
-  const handleSend = useCallback((text: string) => addComment(text), [addComment]);
+  const handleSend = useCallback(
+    (text: string) => addComment({ text, currentCommentsCount: count }),
+    [addComment, count],
+  );
 
   const renderItem = useCallback(
     ({ item }: { item: Comment }) => <CommentItem comment={item} />,
@@ -116,7 +122,7 @@ export function CommentsDrawer({ postId, commentsCount, visible, onClose }: Prop
       >
         <View style={styles.header}>
           <Text style={styles.title}>Комментарии</Text>
-          <Text style={styles.count}>{commentsCount}</Text>
+          <Text style={styles.count}>{count}</Text>
         </View>
 
         {isLoading ? (
@@ -148,7 +154,7 @@ export function CommentsDrawer({ postId, commentsCount, visible, onClose }: Prop
       </BottomSheet>
     </Portal>
   );
-}
+});
 
 const styles = StyleSheet.create({
   background: {
