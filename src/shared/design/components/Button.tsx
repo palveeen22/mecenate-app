@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  TouchableOpacity,
-  Text,
-  StyleSheet,
   ActivityIndicator,
+  Pressable,
+  StyleSheet,
+  Text,
   ViewStyle,
 } from 'react-native';
-import { Colors, Spacing, Radius, Typography } from '../tokens';
+import { Colors, Radius, Spacing, Typography } from '../tokens';
 
 export type ButtonVariant = 'primary' | 'outline';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -20,6 +20,7 @@ interface Props {
   fullWidth?: boolean;
   onPress?: () => void;
   style?: ViewStyle;
+  radius?: number | 'full' | 'sm' | 'md' | 'lg'; 
 }
 
 export function Button({
@@ -31,23 +32,34 @@ export function Button({
   fullWidth = false,
   onPress,
   style,
+  radius
 }: Props) {
   const isPrimary = variant === 'primary';
   const isDisabled = disabled || loading;
 
+  const resolvedRadius =
+    radius === undefined ? Radius.full :
+    radius === 'full'    ? Radius.full :
+    radius === 'sm'      ? Radius.sm :
+    radius === 'md'      ? Radius.md :
+    radius === 'lg'      ? Radius.lg :
+    radius;
+
   return (
-    <TouchableOpacity
-      style={[
+    <Pressable
+      style={({ pressed, hovered }: { pressed: boolean; hovered?: boolean }) => [
         styles.base,
         styles[size],
         isPrimary ? styles.primary : styles.outline,
+        hovered && !isDisabled && (isPrimary ? styles.primaryHover : styles.outlineHover),
+        pressed && !isDisabled && (isPrimary ? styles.primaryPressed : styles.outlinePressed),
         isDisabled && (isPrimary ? styles.primaryDisabled : styles.outlineDisabled),
         fullWidth && styles.fullWidth,
         style,
+        { borderRadius: resolvedRadius }, 
       ]}
       onPress={onPress}
       disabled={isDisabled}
-      activeOpacity={0.8}
     >
       {loading ? (
         <ActivityIndicator
@@ -66,7 +78,7 @@ export function Button({
           {label}
         </Text>
       )}
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 
@@ -96,17 +108,31 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.md,
     minHeight: 52,
   },
-  // variants
+  // primary variant states
   primary: {
     backgroundColor: Colors.primary,
+  },
+  primaryHover: {
+    backgroundColor: Colors.primaryElevated,
+  },
+  primaryPressed: {
+    backgroundColor: Colors.primaryDark,
   },
   primaryDisabled: {
     backgroundColor: Colors.primaryDim,
   },
+  // outline variant states
   outline: {
     backgroundColor: Colors.transparent,
     borderWidth: 1.5,
     borderColor: Colors.primary,
+  },
+  outlineHover: {
+    backgroundColor: Colors.primaryDim,
+  },
+  outlinePressed: {
+    backgroundColor: Colors.primaryDim,
+    borderColor: Colors.primaryElevated,
   },
   outlineDisabled: {
     borderColor: Colors.textMuted,
