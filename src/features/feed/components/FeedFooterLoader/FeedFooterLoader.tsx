@@ -1,4 +1,4 @@
-import { Colors, Spacing } from '@/src/shared/design';
+import { Colors, Spacing } from '@/shared/design';
 import React from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 

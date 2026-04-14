@@ -1,4 +1,4 @@
-import { Colors, Radius, Spacing } from '@/src/shared/design';
+import { Colors, Radius, Spacing } from '@/shared/design';
 import React, { useEffect, useRef } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
 

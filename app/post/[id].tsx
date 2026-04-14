@@ -1,4 +1,4 @@
-import { PostDetailScreen } from '@/src/features/feed/screens';
+import { PostDetailScreen } from '@/features/feed/screens';
 import { useLocalSearchParams } from 'expo-router';
 
 export default function PostDetailRoute() {

@@ -1,5 +1,5 @@
-import { Colors, Radius, Spacing, Typography } from '@/src/shared/design';
-import { InputBar } from '@/src/shared/ui/InputBar';
+import { Colors, Radius, Spacing, Typography } from '@/shared/design';
+import { InputBar } from '@/shared/ui/InputBar';
 import { Ionicons } from '@expo/vector-icons';
 import BottomSheet, {
   BottomSheetBackdrop,

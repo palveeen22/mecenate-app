@@ -1,4 +1,4 @@
-import { Colors, Radius, Spacing, Typography } from '@/src/shared/design';
+import { Colors, Radius, Spacing, Typography } from '@/shared/design';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import React from 'react';

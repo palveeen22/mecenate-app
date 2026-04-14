@@ -1,5 +1,5 @@
 import { PaidIcon } from "@/assets/icons";
-import { Button, Colors, Radius, Spacing, Typography } from "@/src/shared/design";
+import { Button, Colors, Radius, Spacing, Typography } from "@/shared/design";
 import { BlurView } from "expo-blur";
 import { Image } from "expo-image";
 import React from "react";

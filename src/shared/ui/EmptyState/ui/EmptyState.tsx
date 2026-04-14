@@ -1,4 +1,4 @@
-import { Button, Colors, Radius, Spacing, Typography } from '@/src/shared/design';
+import { Button, Colors, Radius, Spacing, Typography } from '@/shared/design';
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 

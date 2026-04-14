@@ -1,4 +1,4 @@
-import { QueryProvider } from '@/src/shared/providers';
+import { QueryProvider } from '@/shared/providers';
 import { PortalProvider } from '@gorhom/portal';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';

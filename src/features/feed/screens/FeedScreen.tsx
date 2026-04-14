@@ -1,5 +1,5 @@
-import { Colors, Spacing } from '@/src/shared/design';
-import { EmptyState } from '@/src/shared/ui/EmptyState';
+import { Colors, Spacing } from '@/shared/design';
+import { EmptyState } from '@/shared/ui/EmptyState';
 import React, { useCallback, useState } from 'react';
 import {
   FlatList,

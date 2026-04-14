@@ -1,3 +1,3 @@
-import { FeedScreen } from '@/src/features/feed';
+import { FeedScreen } from '@/features/feed';
 
 export default FeedScreen;

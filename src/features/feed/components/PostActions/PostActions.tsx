@@ -1,6 +1,6 @@
 import { CommentIcon, HeartIcon } from '@/assets/icons';
-import { Colors, Radius, Spacing, Typography } from '@/src/shared/design';
-import { formatCount } from '@/src/shared/lib/format';
+import { Colors, Radius, Spacing, Typography } from '@/shared/design';
+import { formatCount } from '@/shared/lib/format';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';

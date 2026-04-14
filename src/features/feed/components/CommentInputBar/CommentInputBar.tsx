@@ -1,1 +1,1 @@
-export { InputBar as CommentInputBar } from '@/src/shared/ui/InputBar';
+export { InputBar as CommentInputBar } from '@/shared/ui/InputBar';

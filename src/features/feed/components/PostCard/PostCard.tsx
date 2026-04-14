@@ -1,4 +1,4 @@
-import { Colors, Radius, Spacing, Typography } from '@/src/shared/design';
+import { Colors, Radius, Spacing, Typography } from '@/shared/design';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';

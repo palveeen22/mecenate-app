@@ -1,5 +1,5 @@
-import { apiClient } from '@/src/shared/api';
-import { ApiResponse } from '@/src/shared/types';
+import { apiClient } from '@/shared/api';
+import { ApiResponse } from '@/shared/types';
 import { Comment, CommentsPage, Post, PostsPage } from '../types';
 
 type GetPostsParams = {

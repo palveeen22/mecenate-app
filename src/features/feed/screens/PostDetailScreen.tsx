@@ -1,7 +1,7 @@
-import { Colors, Spacing } from '@/src/shared/design';
-import { EmptyState } from '@/src/shared/ui/EmptyState';
-import { InputBar } from '@/src/shared/ui/InputBar';
-import { NavBar } from '@/src/shared/ui/NavBar';
+import { Colors, Spacing } from '@/shared/design';
+import { EmptyState } from '@/shared/ui/EmptyState';
+import { InputBar } from '@/shared/ui/InputBar';
+import { NavBar } from '@/shared/ui/NavBar';
 import { observer } from 'mobx-react-lite';
 import React, { useCallback, useMemo, useRef } from 'react';
 import {

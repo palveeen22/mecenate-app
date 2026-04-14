@@ -1,5 +1,5 @@
 import { SendIcon } from "@/assets/icons";
-import { Colors, Radius, Spacing, Typography } from "@/src/shared/design";
+import { Colors, Radius, Spacing, Typography } from "@/shared/design";
 import React, { useCallback, useState } from "react";
 import {
   ActivityIndicator,

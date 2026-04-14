@@ -1,4 +1,4 @@
-import { Colors, Radius, Spacing, Typography } from '@/src/shared/design';
+import { Colors, Radius, Spacing, Typography } from '@/shared/design';
 import { Image } from 'expo-image';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';

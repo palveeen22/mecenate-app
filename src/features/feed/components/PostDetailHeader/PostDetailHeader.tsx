@@ -1,5 +1,5 @@
-import { Colors, Radius, Spacing, Typography } from '@/src/shared/design';
-import { formatDate } from '@/src/shared/lib/format';
+import { Colors, Radius, Spacing, Typography } from '@/shared/design';
+import { formatDate } from '@/shared/lib/format';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import React from 'react';

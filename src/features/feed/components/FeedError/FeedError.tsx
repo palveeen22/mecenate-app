@@ -1,4 +1,4 @@
-import { EmptyState } from '@/src/shared/ui/EmptyState';
+import { EmptyState } from '@/shared/ui/EmptyState';
 import React from 'react';
 
 type Props = {
