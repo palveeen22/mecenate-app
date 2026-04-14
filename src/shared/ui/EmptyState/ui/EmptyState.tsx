@@ -1,5 +1,4 @@
-import { Button } from '@/src/shared/design';
-import { Colors, Spacing, Typography } from '@/src/shared/design';
+import { Button, Colors, Radius, Spacing, Typography } from '@/src/shared/design';
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
@@ -18,7 +17,7 @@ export function EmptyState({ title, buttonLabel, onPress }: Props) {
         resizeMode="contain"
       />
       <Text style={styles.title}>{title}</Text>
-      <Button label={buttonLabel} onPress={onPress} size="lg" fullWidth />
+      <Button label={buttonLabel} radius={Radius.md + 2} onPress={onPress} size="md" fullWidth />
     </View>
   );
 }
@@ -37,8 +36,8 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.sm,
   },
   title: {
-    fontSize: Typography.size.md,
-    fontWeight: '600',
+    fontSize: Typography.size.lg,
+    fontWeight: Typography.weight.semibold,
     color: Colors.text,
     textAlign: 'center',
   },
